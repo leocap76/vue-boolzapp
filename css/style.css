@@ -3,18 +3,88 @@
   padding: 0;
   margin:0;
 }
-
+/* BACKGROUND */
 #background{
   width: 100vw;
   height: 100vh;
   background-image: linear-gradient(to bottom,#009688 20%,#d9dbd5 20%);
   padding: 20px 0;
 }
-
+/* ROOT-BOX */
 #root{
   display: flex;
   width: 80%;
   height: 100%;
   margin: auto;
   background-color: red;
+}
+
+/* SEZIONE SINISTRA CON TUTTE LE CHAT */
+#chat{
+  width: 36%;
+  height: 100%;
+  background-color: #ffff;
+}
+#chat .chat-header{
+  border-right: 1px solid #B3A79F;
+}
+
+/* SEZIONE DESTRA CON LA CHAT CORRENTE*/
+#current-chat{
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-direction: column;
+  width: 64%;
+  height: 100%;
+  background-image: url(/Users/leonardocapogna/Desktop/vue-boolzapp/img/IMG_5826.JPG);
+}
+
+.chat-header{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  widht: 100%;
+  height: 13%;
+  background-color: #EAEAEA;
+}
+.chat-bottom{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  widht: 100%;
+  height: 10%;
+  bottom: 0;
+  background-color: #EAEAEA;
+}
+.chat-bottom i{
+  color: #B3A79F;
+  width: 20px;
+}
+
+.emoji, .text-message, .vocals{
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+.user, .chat-icons{
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+.user img{
+  width: 20%;
+  margin-left: 10px;
+  border-radius: 100%;
+}
+.user h3{
+  color: black;
+  font-family: sans-serif;
+  text-decoration: none;
+}
+
+.chat-icons i{
+  font-size: 25px;
+  padding: 10px;
+  color: #B3A79F;
 }
