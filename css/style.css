@@ -8,4 +8,13 @@
   width: 100vw;
   height: 100vh;
   background-image: linear-gradient(to bottom,#009688 20%,#d9dbd5 20%);
+  padding: 20px 0;
+}
+
+#root{
+  display: flex;
+  width: 80%;
+  height: 100%;
+  margin: auto;
+  background-color: red;
 }
