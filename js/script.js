@@ -22,7 +22,7 @@ var app = new Vue({
     data: {
       contacts: [
       	{
-      		name: 'Michele',
+      		name: 'Marco',
       		avatar: '_1',
       		visible: true,
       		messages: [
@@ -44,7 +44,7 @@ var app = new Vue({
       		],
       	},
       	{
-      		name: 'Fabio',
+      		name: 'Alice',
       		avatar: '_2',
       		visible: true,
           messages: [
@@ -66,7 +66,7 @@ var app = new Vue({
       		],
       	},
       	{
-      		name: 'Samuele',
+      		name: 'Emanuele',
       		avatar: '_3',
       		visible: true,
       		messages: [
@@ -88,7 +88,7 @@ var app = new Vue({
       		],
       	},
       	{
-      		name: 'Luisa',
+      		name: 'Massimo',
       		avatar: '_4',
       		visible: true,
       		messages: [
@@ -106,6 +106,10 @@ var app = new Vue({
       	},
       ],
 
+    },
+    methods:{
+      selectContact: function(contactIndex){
+        this.selectedContact = this.contacts[contactIndex];
+      }
     }
-
 });
