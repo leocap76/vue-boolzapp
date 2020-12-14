@@ -17,6 +17,7 @@
   height: 100%;
   margin: auto;
   background-color: red;
+  font-family: sans-serif;
 }
 
 /* SEZIONE SINISTRA CON TUTTE LE CHAT */
@@ -24,6 +25,7 @@
   width: 36%;
   height: 100%;
   background-color: #ffff;
+  overflow-y: scroll;
 }
 #chat .chat-header{
   border-right: 1px solid #B3A79F;
@@ -38,8 +40,13 @@
   width: 64%;
   height: 100%;
   background-image: url(/Users/leonardocapogna/Desktop/vue-boolzapp/img/IMG_5826.JPG);
+  background-size: contain;
+  overflow-y: scroll;
 }
-
+#current-chat img{
+  width: 10%;
+  margin-right: 10px;
+}
 .chat-header{
   display: flex;
   justify-content: space-between;
@@ -48,25 +55,26 @@
   height: 13%;
   background-color: #EAEAEA;
 }
-.chat-bottom{
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  widht: 100%;
-  height: 10%;
-  bottom: 0;
+#chat-bottom{
+  width: 100%;
+  height: 50px;
+  padding: 8px 0px;
   background-color: #EAEAEA;
 }
-.chat-bottom i{
-  color: #B3A79F;
-  width: 20px;
+#chat-bottom  input{
+  height: calc(100%);
+  width: calc(100% - 113px);
+  font-size: 14px;
+  padding: 0 10px;
 }
 
-.emoji, .text-message, .vocals{
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
+.btn_chat-bottom {
+  margin: 0 18px;
+  color: #6b7376;
+  cursor: pointer;
 }
+
+
 .user, .chat-icons{
   display: flex;
   justify-content: flex-start;
@@ -76,15 +84,77 @@
   width: 20%;
   margin-left: 10px;
   border-radius: 100%;
+  margin-right: 10px;
 }
-.user h3{
+.user a h3{
   color: black;
-  font-family: sans-serif;
+
+}
+.user a{
   text-decoration: none;
 }
-
 .chat-icons i{
   font-size: 25px;
   padding: 10px;
   color: #B3A79F;
+}
+
+#notifications{
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 13%;
+  background-color: lightblue;
+}
+#notifications span{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  float: left;
+  width: 60px;
+  height: 60px;
+  margin: 10px;
+  background-color: #ffff;
+  border-radius: 50%;
+}
+#notifications span i{
+  color: lightblue;
+  font-size: 25px;
+}
+.notifications_text{
+  flex-direction: column;
+}
+
+.notifications_text p a{
+  color: grey;
+  font-size: 90%;
+}
+.not_p{
+text-decoration: none;
+color: black;
+font-size: 90%;
+}
+
+#search {
+  height: 40px;
+  display: flex;
+  align-items: center;
+  background-color:#fafafa;
+  padding:0 5px;
+}
+#btn_search {
+  width: 80px;
+  height: 32px;
+  background-color:  white;
+  border: 1px solid #f5f5f5;
+  border-right: none;
+}
+#btn_search .fa-search{
+  color: #b6b9bb;
+}
+#search input {
+  height: 32px;
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #f5f5f5;
 }
