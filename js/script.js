@@ -23,7 +23,7 @@ var app = new Vue({
       contacts: [
       	{
       		name: 'Marco Collalti',
-      		avatar: '_1',
+      		avatar: 'Marco',
       		visible: true,
       		messages: [
       			{
@@ -45,7 +45,7 @@ var app = new Vue({
       	},
       	{
       		name: 'Alice De Angelis',
-      		avatar: '_2',
+      		avatar: 'Alice',
       		visible: true,
           messages: [
       			{
@@ -67,7 +67,7 @@ var app = new Vue({
       	},
       	{
       		name: 'Emanuele Izzi',
-      		avatar: '_3',
+      		avatar: 'Emanuele',
       		visible: true,
       		messages: [
       			{
@@ -89,7 +89,7 @@ var app = new Vue({
       	},
       	{
       		name: 'Massimo Favale',
-      		avatar: '_4',
+      		avatar: 'Massimo',
       		visible: true,
       		messages: [
       			{
@@ -118,7 +118,7 @@ var app = new Vue({
       },
       addNewMessage: function() {
         var newObj = {
-          date: '10/01/2020 15:50:00',
+          date: dayjs().format("DD/MM/YYYY HH:mm:ss"),
           text: this.newMessage,
           status: 'sent'
         };
