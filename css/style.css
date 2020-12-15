@@ -96,11 +96,11 @@
   word-break: break-all;
 }
 
-.message-sent{
+.message.sent{
   background-color: lightgreen;
 }
 
-.message-recived{
+.message.received{
   align-self: flex-start;
   background-color: white;
 }
@@ -142,6 +142,7 @@
   border: 1px solid #EAEAEA;
   border-right: none;
   font-size: 20px;
+  cursor: pointer;
 }
 
   /* /SEZIONE SCRITTURA MESSAGGIO */
