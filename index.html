@@ -41,7 +41,7 @@
             <div id="chat">
               <div class="chat-header">
 
-                <div class="user">
+                <div class="contact">
                   <img src="img/320336.png" alt="">
                   <a href="#"><h3>Leonardo Capogna</h3></a>
                 </div>
@@ -72,18 +72,40 @@
               <!-- /div search -->
 
               <!-- div contacts -->
-              <ul>
-                <li><a href="#"></a> </li>
-              </ul>
+              <div id="contacts">
+                <div v-for="(contact, index) in contacts" class="contact-active" v-bind:class="(index == activeContactIndex) ? 'active' : '' " @click="setActiveContactIndex(index)">
+                  <img : src='img/avatar'+'contact.avatar'+'.jpg' alt="">
+                  <h3>{{contact.name}}</h3>
+                </div>
+
+                <!-- <div class="contact">
+                  <img src="img/320336.png" alt="">
+                  <h3>Alice De Angelis</h3>
+                </div>
+
+                <div class="contact">
+                  <img src="img/320336.png" alt="">
+                  <h3>Emanuele Izzi</h3>
+                </div>
+
+                <div class="contact">
+                  <img src="img/320336.png" alt="">
+                  <h3>Massimo Favale</h3>
+                </div> -->
+              </div>
               <!-- /div contacts -->
             </div>
 
             <!-- right main -->
             <div id="current-chat">
               <div class="chat-header">
-                <div class="user">
+                <div class="contact">
                   <img src="img/320336.png" alt="">
-                  <a href="#"><h3>Marco Collalti</h3></a>
+                  <div class="contact-info">
+                    <a href="#"><h3>{{ contacts[activeContactIndex].name }}</h3></a>
+                    <p>ultimo accesso alle 00:00 del 01/01/2021</p>
+                  </div>
+
                 </div>
 
                 <div class="chat-icons">
@@ -95,15 +117,17 @@
 
               <!-- main -->
               <div id="messages">
-                <div class="message">
-                  <span class="sent">ciao</span>
-                  <span class="recived">hey</span>
+                <div v-for="message in contacts[activeContactIndex].messages" class="message" v-bind:class="message.status" >
+                  {{ message.text }}
+                  <div class="message-time">
+                    {{ message.data }}
+                  </div>
                 </div>
               </div>
               <!-- /main -->
               <div id="chat-bottom">
                 <button  class="btn_chat-bottom" type="button" name="button"><i class="far fa-smile"></i></button>
-                <input type="text" placeholder="scrivi un messaggio" name="" value="">
+                <input type="text" placeholder="scrivi un messaggio" name="" value="" v-model="newMessage" @keydown.enter="addNewMessage">
                 <button  class="btn_chat-bottom" type="button" name="button"><i class="fas fa-microphone"></i></button>
               </div>
             </div>

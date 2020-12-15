@@ -105,11 +105,20 @@ var app = new Vue({
       		],
       	},
       ],
-
+      activeContactIndex: 0,
     },
     methods:{
-      selectContact: function(contactIndex){
-        this.selectedContact = this.contacts[contactIndex];
+      setActiveContactIndex: function() {
+        this.activeContactIndex = newIndex,
+      },
+      addNewMessage: function() {
+        var newObj = {
+          date: '10/01/2020 15:50:00',
+          text: this.newMessage,
+          status: 'sent'
+        };
+        this.contacts[this.activeContactIndex].messages.push(newObj);
+        this.newMessage = '';
       }
     }
 });

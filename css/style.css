@@ -25,7 +25,6 @@
   width: 36%;
   height: 100%;
   background-color: #ffff;
-  overflow-y: scroll;
 }
 #chat .chat-header{
   border-right: 1px solid #B3A79F;
@@ -33,29 +32,39 @@
 
 #contacts{
   border-bottom: 0.5px solid lightgrey;
+  overflow-y: scroll;
 }
-#contacts .user img{
+#contacts .contact img{
   width: 15%;
   margin-top: 10px;
   margin-bottom: 10px;
 }
-.user, .chat-icons{
+.contact, .chat-icons{
   display: flex;
   justify-content: flex-start;
   align-items: center;
 }
-.user img{
-  width: 20%;
+.contact-info{
+  display: flex;
+  flex-direction: column;
+}
+.contact img{
+  width: 25%;
   margin-left: 10px;
   border-radius: 100%;
   margin-right: 10px;
 }
-.user a h3{
+.contact-info,.contact a h3{
   color: black;
   font-size: 15px;
-
 }
-.user a{
+.contact-info a{
+  text-decoration: none;
+}
+.contact-info p{
+  color: grey;
+}
+.contact a{
   text-decoration: none;
 }
 .chat-icons i{
@@ -87,17 +96,17 @@
   word-break: break-all;
 }
 
-.message .sent{
+.message-sent{
   background-color: lightgreen;
 }
 
-.message .recived{
+.message-recived{
   align-self: flex-start;
   background-color: white;
 }
 
 #current-chat img{
-  width: 10%;
+  width: 7%;
   margin-right: 10px;
 }
 .chat-header{
@@ -108,6 +117,9 @@
   height: 10%;
   background-color: #EAEAEA;
 }
+
+  /* SEZIONE SCRITTURA MESSAGGIO */
+
 #chat-bottom{
   width: 100%;
   height: 70px;
@@ -119,14 +131,20 @@
   width: calc(100% - 113px);
   font-size: 14px;
   padding: 0 10px;
+  border-radius: 5px;
+  border: 1px solid #EAEAEA;
 }
 
 .btn_chat-bottom {
-  margin: 0 18px;
-  color: #6b7376;
-  cursor: pointer;
+  width: 50px;
+  height: 32px;
+  background-color:  #EAEAEA;
+  border: 1px solid #EAEAEA;
+  border-right: none;
+  font-size: 20px;
 }
 
+  /* /SEZIONE SCRITTURA MESSAGGIO */
 
 #notifications{
   display: flex;
