@@ -74,7 +74,7 @@
               <!-- div contacts -->
               <div id="contacts">
                 <div v-for="(contact, index) in contacts" class="contact-active" v-bind:class="(index == activeContactIndex) ? 'active' : '' " @click="setActiveContactIndex(index)">
-                  <img :src='img/'+'contacts.avatar'+'.png' alt="">
+                  <img :src="'img/' + contact.avatar + '.png'" alt="">
                   <div class="contact-info">
                     <h3>{{contact.name}}</h3>
                     <p>ultimo accesso alle 00:00 del 01/01/2021</p>
@@ -104,7 +104,7 @@
             <div id="current-chat">
               <div class="chat-header">
                 <div class="contact">
-                  <img :src='img/'+'contacts.avatar'+'.png' alt="">
+                  <img :src="'img/' + contacts[activeContactIndex].avatar + '.png'" alt="">
                   <div class="contact-info">
                     <a href="#"><h3>{{ contacts[activeContactIndex].name }}</h3></a>
                     <p>ultimo accesso alle 00:00 del 01/01/2021</p>
@@ -124,7 +124,7 @@
                 <div v-for="message in contacts[activeContactIndex].messages" class="message" :class="message.status" >
                   {{ message.text }}
                   <div class="message-time">
-                    {{ message.data }}
+                    {{ message.date }}
                   </div>
                 </div>
               </div>
@@ -142,8 +142,9 @@
 
        </div>
      <!--/sfondo sottostante-->
-  <script src="js/script.js" charset="utf-8"></script>
   <script src="https://unpkg.com/dayjs@1.8.21/dayjs.min.js"></script>
+  <script src="js/script.js" charset="utf-8"></script>
+
 
   </body>
 </html>

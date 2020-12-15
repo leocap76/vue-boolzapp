@@ -36,13 +36,15 @@
 #contacts{
   border-bottom: 0.5px solid #EAEAEA;
   overflow-y: scroll;
+  height: calc(100% - 140px);
 }
-#contacts .contact img{
-  width: 15%;
+#contacts img{
+  width: 17%;
   margin-top: 10px;
   margin-bottom: 10px;
+  border-radius: 50px;
+  margin-left: 10px;
 }
-
 
 .contact, .chat-icons{
   display: flex;
@@ -52,9 +54,10 @@
 .contact-info{
   display: flex;
   flex-direction: column;
+  padding: 10px;
 }
 .contact img{
-  width: 20%;
+  width: 25%;
   margin-left: 10px;
   border-radius: 100%;
   margin-right: 10px;
@@ -68,16 +71,22 @@
 }
 .contact-info p{
   color: grey;
+  font-size: 13px;
 }
 .contact a{
   text-decoration: none;
 }
 .chat-icons i{
-  font-size: 20px;
+  font-size: 25px;
   padding: 10px;
   color: #B3A79F;
 }
 
+.contact-active{
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
 .chat-header .chat-icons{
   margin-right: 20px;
 }
@@ -110,6 +119,12 @@
   background-color: white;
 }
 
+.message-time{
+  color: grey;
+  font-size: 10px;
+  float: right;
+  margin-top: 20px;
+}
 #current-chat img{
   width: 10%;
   margin-right: 10px;

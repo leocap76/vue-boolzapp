@@ -118,12 +118,16 @@ var app = new Vue({
       },
       addNewMessage: function() {
         var newObj = {
-          date: dayjs().format("DD/MM/YYYY HH:mm:ss"),
+          date: dayjs().format(" HH:mm:ss"),
           text: this.newMessage,
           status: 'sent'
         };
         this.contacts[this.activeContactIndex].messages.push(newObj);
         this.newMessage = '';
+
+        var objDiv = document.getElementById("messages");
+        objDiv.scrollTop = objDiv.scrollHeight;
       }
+
     }
 });
