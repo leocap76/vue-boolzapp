@@ -18,116 +18,199 @@
 // La struttura dell’array dei contatti potrebbe avere questa forma:
 var app = new Vue({
 
-    el: '#root',
-    data: {
-      contacts: [
-      	{
-      		name: 'Marco Collalti',
-      		avatar: 'Marco',
-      		visible: true,
-      		messages: [
-      			{
-      				date: '10/01/2020 15:30:55',
-      				text: 'Hai portato a spasso il cane?',
-      				status: 'sent'
-      			},
-      			{
-      				date: '10/01/2020 15:50:00',
-      				text: 'Ricordati di dargli da mangiare',
-      				status: 'sent'
-      			},
-      			{
-      				date: '10/01/2020 16:15:22',
-      				text: 'Tutto fatto!',
-      				status: 'received'
-      			}
-      		],
-      	},
-      	{
-      		name: 'Alice De Angelis',
-      		avatar: 'Alice',
-      		visible: true,
-          messages: [
-      			{
-      				date: '20/03/2020 16:30:00',
-      				text: 'Ciao come stai?',
-      				status: 'sent'
-      			},
-      			{
-      				date: '20/03/2020 16:30:55',
-      				text: 'Bene grazie! Stasera ci vediamo?',
-      				status: 'received'
-      			},
-      			{
-      				date: '20/03/2020 16:35:00',
-      				text: 'Mi piacerebbe ma devo andare a fare la spesa.',
-      				status: 'sent'
-      			}
-      		],
-      	},
-      	{
-      		name: 'Emanuele Izzi',
-      		avatar: 'Emanuele',
-      		visible: true,
-      		messages: [
-      			{
-      				date: '28/03/2020 10:10:40',
-      				text: 'La Marianna va in campagna',
-      				status: 'received'
-      			},
-      			{
-      				date: '28/03/2020 10:20:10',
-      				text: 'Sicuro di non aver sbagliato chat?',
-      				status: 'sent'
-      			},
-      			{
-      				date: '28/03/2020 16:15:22',
-      				text: 'Ah scusa!',
-      				status: 'received'
-      			}
-      		],
-      	},
-      	{
-      		name: 'Massimo Favale',
-      		avatar: 'Massimo',
-      		visible: true,
-      		messages: [
-      			{
-      				date: '10/01/2020 15:30:55',
-      				text: 'Lo sai che ha aperto una nuova pizzeria?',
-      				status: 'sent'
-      			},
-      			{
-      				date: '10/01/2020 15:50:00',
-      				text: 'Si, ma preferirei andare al cinema',
-      				status: 'received'
-      			}
-      		],
-      	},
-      ],
-      activeContactIndex: 0,
+  el: "#app",
+  data: {
 
-      newMessage: '',
+    activeIndex: 0,
+    deleteIndex: 0,
+    deleteChat: 0,
+    filter: "",
+    visibleEmoji: false,
+    visibleMessage: true,
+    visible:false,
+    visibleDeleteBox: false,
+    nameArray: [],
+    newMessage: "",
+    activeChat: {},
+    activeChatIndex: 0,
+    contacts: [
+	
+	{
+		name: 'Emanuele',
+		avatar: 'img/Emanuelee.png',
+		visible: true,
+		messages: [
+			{
+				date: '27/01/2021 09:15:34',
+				text: 'Emanuele ma sabato abbiamo allenamenti?',
+				status: 'sent'
+			},
+			{
+				date: '27/01/2021 09:15:34',
+				text: 'penso questo finesettimana salta',
+				status: 'received'
+			}
+		],
+	},
+	{
+		name: 'Massimo',
+		avatar: 'img/Massimo.png',
+		visible: true,
+		messages: [
+			{
+				date: '27/01/2021 09:15:34',
+				text: 'Massi ma dove stai?',
+				status: 'sent'
+			},
+			{
+				date: '27/01/2021 09:15:34',
+				text: 'Sto in ritardo arrivo!!',
+				status: 'received'
+			},
+			{
+				date: '27/01/2021 09:15:35',
+				text: 'come sempre',
+				status: 'sent'
+			}
+		],
+	},
+	{
+		name: 'Marco',
+		avatar: 'img/Marco.png',
+		visible: true,
+		messages: [
+			{
+				date: '27/01/2021 09:15:34',
+				text: 'Ciao Marioo',
+				status: 'sent'
+			},
+			{
+				date: '27/01/2021 09:15:38',
+				text: 'Guarda che sono Marco, mi sa ti sei sbagliato!',
+				status: 'received'
+			},
+
+		],
+	},
+  {
+		name: 'Alice',
+		avatar: 'img/Alice.png',
+		visible: true,
+		messages: [
+			{
+				date: '27/01/2021 09:15:34',
+				text: 'Oi ma oggi facciamo qualcosa?',
+				status: 'sent'
+			},
+			{
+				date: '27/01/2021 09:15:36',
+				text: 'Si, prima devo studiare però',
+				status: 'received'
+			},
+
+		],
+	},
+
+],
+    icons : [
+  {
+    name: "fas fa-smile",
+    color: "grey"
+  },
+  {
+    name: "fas fa-smile",
+    color: "brown"
+	},
+	{
+    name: "fas fa-smile",
+    color: "grey"
+	},
+	{
+    name: "fas fa-smile",
+    color: "grey"
+  },
+]
+
+  },
+  // created: this.activeChat = "",
+  methods: {
+    showActiveChat: function(index) {
+      this.activeChat = this.contacts[index];
+      this.activeIndex = index
+    },
+    answerOk: function () {
+      var receivedObj = {
+        date: dayjs().format("DD/MM/YYYY HH:mm:ss"),
+        text: "ciaoo",
+        status: "received"
+      };
+
+       this.activeChat.messages.push(receivedObj);
+
 
     },
+    sentNewMessage: function() {
+      var newObj = {
+        date: dayjs().format("DD/MM/YYYY HH:mm:ss"),
+        text: this.newMessage,
+        status: "sent"
+      };
 
 
-    methods:{
-      setActiveContactIndex: function() {
-        this.activeContactIndex = newIndex;
-      },
-      addNewMessage: function() {
-        var newObj = {
-          date: dayjs().format(" HH:mm:ss"),
-          text: this.newMessage,
-          status: 'sent'
-        };
-        this.contacts[this.activeContactIndex].messages.push(newObj);
-        this.newMessage = '';
+      this.activeChat.messages.push(newObj);
+      this.newMessage = "";
 
-        var objDiv = document.getElementById("messages");
-        objDiv.scrollTop = objDiv.scrollHeight;
+
+      setTimeout(this.answerOk, 1000);
+    },
+    openEmoji: function() {
+
+      if(this.visibleEmoji == false) {
+        this.visibleEmoji = true
+      } else{
+        this.visibleEmoji = false
+      };
+
+    },
+    filtterName: function () {
+
+      for (var i = 0; i < this.contacts.length; i++) {
+        if(this.filter == "") {
+          this.contacts[i].visible = true
+        } else if (this.contacts[i].name.toLowerCase().includes(this.filter.toLowerCase()) ) {
+          this.contacts[i].visible = true
+      } else {
+          this.contacts[i].visible = false
       }
 
+
     }
+  },
+  showDeleteBox: function(index) {
+
+
+    this.deleteIndex = index;
+    this.visibleDeleteBox = true;
+
+
+  },
+  deleteMesssage: function(index) {
+    this.visibleDeleteBox = false;
+    this.deleteChat = index;
+
+    delete this.contacts[this.activeChatIndex].messages[0]
+    console.log(this.deleteIndex);
+    console.log(index);
+    console.log(this.contacts[index]);
+    
+      if (this.deleteChat == index) {
+        this.visibleMessage = false
+      } else {
+        this.visibleMessage = true
+      }
+
+
+	},
+	
+  }
 });

@@ -1,150 +1,125 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
-    <link rel="stylesheet" href="css/style.css">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta charset="utf-8">
-    <title>BOOLZAPP</title>
-    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <head>
+      <meta charset="utf-8">
+      <!-- style css -->
+      <link rel="stylesheet" href="css/style.css">
+
+      <link rel="preconnect" href="https://fonts.gstatic.com">
+
+      <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet">
+
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.css" integrity="sha512-f73UKwzP1Oia45eqHpHwzJtFLpvULbhVpEJfaWczo/ZCV5NWSnK4vLDnjTaMps28ocZ05RbI83k2RlQH92zy7A==" crossorigin="anonymous" />
+
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/dayjs/1.9.7/dayjs.min.js" integrity="sha512-kZ+x2gdehn6OZMWZSp3Vt5R+v9hQTYEATQwaUfWquhxbvNVAy6IRtYs7asdyxKUTqG0I5ZqBqnzcBrpnHJCAGw==" crossorigin="anonymous"></script>
+
+      <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+
+      <!-- favicon -->
+      <link rel="shortcut icon" type="image/x-icon"href="img/favicon.png">
+
+      <title>Boolzap</title>
+
+
   </head>
   <body>
-    <!-- SOLO DA ESEMPIO -->
-       <!-- <div id="root">
-           <h1>to do</h1>
-           <div class="search"> -->
-             <!-- @keyup.13/enter -->
-               <!-- <input  type="text" v-model="newItem" @keyup.13="addList">
-               <button @click="addList" >New Item</button>
-           </div> -->
-           <!-- se la lista di cose da fare (list) è maggiore di 0, allora mostrerà le cose da fare -->
-           <!-- <ul v-if="list.length > 0">
-             <li v-for="(item,index) in list" :class="{zoomClass: (hoverToDo === index)}">
-               <span class="delete" @mouseenter="updateHover(index)" @mouseleave="updateHover(-1)">
-                 <button type="button" name="button" @click="removeList(index)">
-                   <i class="fas fa-trash-alt"></i>
-                 </button>
-               </span>  {{index + 1}}  {{ item }}
-             </li>
-           </ul> -->
-           <!-- se uguale a 0, vuol dire che non c'è nulla da fare -->
-           <!-- <h1 v-else>non ci sono cose da fare!!</h1>
-       </div> -->
-
-       <!-- sfondo sottostante -->
-       <div id="background">
-
-          <div id="root">
-
-
-
-            <div id="chat">
-              <div class="chat-header">
-
-                <div class="contact">
-                  <img src="img/320336.png" alt="">
-                  <a href="#"><h3>Leonardo Capogna</h3></a>
-                </div>
-
-                <div class="chat-icons">
-                  <a href="#"><i class="fas fa-circle-notch"></i></a>
-                  <a href="#"><i class="fas fa-comment-alt"></i></a>
-                  <a href="#"><i class="fas fa-ellipsis-v"></i></a>
-                </div>
+    <div id="app">
+      <div class="container">
+        <div class="left_block">
+          <div class="header_left_block">
+            <div class="info_user">
+              <img src="/Users/leonardocapogna/Desktop/Boolean/vue-boolzapp/img/320336.png" alt="">
+              <h3>Leo</h3>
+            </div>
+            <div class="info_user_icons">
+              <ul class="inline_list">
+                <li><a href="#"><i class="fas fa-circle-notch"></i></a></li>
+                <li><a href="#"><i class="fas fa-comment-alt"></i></a></li>
+                <li><a href="#"><i class="fas fa-ellipsis-v"></i></a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="active_notifications">
+            <div class="active_notification_icon">
+              <i class="fas fa-bell-slash"></i>
+            </div>
+            <div class="text_active_notifications">
+              <h3>Ricevi notifiche di nuovi messaggi</h3>
+              <a href="">Attiva notifiche</a>
+            </div>
+          </div>
+          <div class="input_search_new_chat_field">
+            <div class="input_field">
+              <i class="fas fa-search"></i>
+              <input  @keyup="filtterName" type="text" name="" v-model="filter" placeholder="Cerca o inizia una nuova chat">
+            </div>
+          </div>
+          <div class="chats_container">
+            <ul class="normal_list">
+              <li :class="(activeIndex == index) ? 'active': ''" v-if="contact.visible" @click="showActiveChat(index), activeChatIndex = index" v-for="(contact, index) in contacts" ><img :src="contact.avatar" alt=""><span>{{contact.name}}</span></li>
+            </ul>
+          </div>
+        </div>
+        
+        <div class="right_block">
+          <div class="header_right_block">
+            <div class="info_friend">
+              <div class="info_friend_avatar">
+                <img :src="activeChat.avatar" alt="">
               </div>
-
-              <!-- div notifiche -->
-              <div id="notifications">
-                <span><i class="fas fa-bell-slash"></i></span>
-                <div class="notifications_text">
-                  <a href="#" class="not_p"><p>Ricevi notifiche di nuovi messaggi</p> </a>
-                  <p><a href="#">attiva notifica desktop</a> </p>
-                </div>
-
+              <div class="info_friend_infos">
+                <h3>{{activeChat.name}}</h3>
               </div>
-              <!-- /div notifiche -->
-
-              <!-- div search -->
-              <div id="search">
-                <button type="button" id="btn_search" name="button"><i class="fas fa-search"></i></button>
-                <input placeholder="Cerca o inizia un nuova chat" type="text" name="" value="">
-              </div>
-              <!-- /div search -->
-
-              <!-- div contacts -->
-              <div id="contacts">
-                <div v-for="(contact, index) in contacts" class="contact-active" v-bind:class="(index == activeContactIndex) ? 'active' : '' " @click="setActiveContactIndex(index)">
-                  <img :src="'img/' + contact.avatar + '.png'" alt="">
-                  <div class="contact-info">
-                    <h3>{{contact.name}}</h3>
-                    <p>ultimo accesso alle 00:00 del 01/01/2021</p>
-                  </div>
-
-                </div>
-
-                <!-- <div class="contact">
-                  <img src="img/320336.png" alt="">
-                  <h3>Alice De Angelis</h3>
-                </div>
-
-                <div class="contact">
-                  <img src="img/320336.png" alt="">
-                  <h3>Emanuele Izzi</h3>
-                </div>
-
-                <div class="contact">
-                  <img src="img/320336.png" alt="">
-                  <h3>Massimo Favale</h3>
-                </div> -->
-              </div>
-              <!-- /div contacts -->
             </div>
 
-            <!-- right main -->
-            <div id="current-chat">
-              <div class="chat-header">
-                <div class="contact">
-                  <img :src="'img/' + contacts[activeContactIndex].avatar + '.png'" alt="">
-                  <div class="contact-info">
-                    <a href="#"><h3>{{ contacts[activeContactIndex].name }}</h3></a>
-                    <p>ultimo accesso alle 00:00 del 01/01/2021</p>
-                  </div>
-
-                </div>
-
-                <div class="chat-icons">
-                  <a href="#"><i class="fas fa-search"></i></a>
-                  <a href="#"><i class="fas fa-paperclip"></i></a>
-                  <a href="#"><i class="fas fa-ellipsis-v"></i></a>
-                </div>
-              </div>
-
-              <!-- main -->
-              <div id="messages">
-                <div v-for="message in contacts[activeContactIndex].messages" class="message" :class="message.status" >
-                  {{ message.text }}
-                  <div class="message-time">
-                    {{ message.date }}
-                  </div>
-                </div>
-              </div>
-              <!-- /main -->
-              <div id="chat-bottom">
-                <button  class="btn_chat-bottom" type="button" name="button"><i class="far fa-smile"></i></button>
-                <input type="text" placeholder="scrivi un messaggio" name="" value="" v-model="newMessage" @keydown.enter="addNewMessage">
-                <button  class="btn_chat-bottom" type="button" name="button"><i class="fas fa-microphone"></i></button>
-              </div>
+            <div class="info_friend_icon">
+              <ul class="inline_list">
+                <li><a href="#"><i class="fas fa-search"></i></a></li>
+                <li><a href="#"><i class="fas fa-paperclip"></i></a></li>
+                <li><a href="#"><i class="fas fa-ellipsis-v"></i></a></li>
+              </ul>
             </div>
-            <!-- /right main -->
+          </div>
 
+          <div class="main_chat_field">
+            <ul class="main_chat_list">
 
-         </div>
+              <li v-for="(message, index) in activeChat.messages" :class="message.status"> <p>{{message.text}}</p>
 
-       </div>
-     <!--/sfondo sottostante-->
-  <script src="https://unpkg.com/dayjs@1.8.21/dayjs.min.js"></script>
-  <script src="js/script.js" charset="utf-8"></script>
+                 <span>{{message.date}}</span>
+              <i @click="showDeleteBox(index)" class="fas fa-chevron-down"></i>
+              <div v-if="visibleDeleteBox && deleteIndex == index" class="delete_box">
+                <p>Message info</p>
+                <p @click="deleteMessage(index)">Delete message</p>
+              </div>
+              </li>
+            </ul>
+          </div>
 
+          <div class="footer_input_field">
 
+            <div v-if="visibleEmoji" class="emoji_container">
+              <ul class="inline_list">
+                <i v-for="icon in icons" :class=" icon.name + ' ' + icon.color "></i>
+              </ul>
+            </div>
+
+            <div class="smile_container">
+              <i @click="openEmoji" :class=" (visible) ? 'fas fa-times':'far fa-smile' "></i>
+            </div>
+
+            <input @keydown.enter="sentNewMessage" type="text" name="" v-model="newMessage" placeholder="Scrivi un messaggio">
+            <div class="microphone_container">
+              <i class="fas fa-microphone"></i>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <script src="js/script.js" charset="utf-8"></script>
   </body>
-</html>
+  </html>
